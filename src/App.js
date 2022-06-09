@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import React from "react";
+import './App.css'
+import {Users} from "./Components/Users/Users";
+import Test from "./Components/Users/Test";
+export default class App extends React.Component {
+    state = {
+        persons: [],
+        albums: []
+    }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    componentDidMount() {
+        axios.get(`https://jsonplaceholder.typicode.com/users`)
+            .then(res => {
+                const persons = res.data;
+                this.setState({ persons });
+            })
+    }
+
+
+getPhotos =  (id) => {
+    axios.get(`https://jsonplaceholder.typicode.com/photos/`)
+        .then(res => {
+            const albums = res.data;
+            this.setState({albums})
+        })
 }
 
-export default App;
+
+    render() {
+        return (
+                <div className="App">
+                    <header className="App-header">
+                        <div>Photo gallery</div>
+                    </header>
+                    {this.state.albums.length>0?<Test albums={this.state.albums}/>:
+                        <Users getPhotos={this.getPhotos} persons = {this.state.persons}/>}
+                </div>
+        )
+    }
+}

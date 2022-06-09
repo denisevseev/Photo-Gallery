@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+div:active{
+  color: red;
+
+}
+ div {
+  flex: 20%;
+   cursor: pointer;
+}
