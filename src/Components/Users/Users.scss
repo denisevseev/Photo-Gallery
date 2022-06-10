@@ -1,12 +1,14 @@
 .container {
   display: flex;
   flex-wrap: wrap;
+  width: 40%;
+  gap: 10px;
+  div {
+    //flex: 30%;
+    cursor: pointer;
+  }
 }
-div:active{
-  color: red;
-
-}
- div {
-  flex: 20%;
-   cursor: pointer;
-}
+//div:active{
+//  color: red;
+//
+//}
