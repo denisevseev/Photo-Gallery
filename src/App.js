@@ -4,12 +4,16 @@ import './App.css'
 import {Users} from "./Components/Users/Users";
 import Albums from "./Components/Users/Albums/Albums";
 import {Link, Route, Routes} from "react-router-dom";
+import {Photos} from "./Components/Users/Photos/Photos";
+import {BreadCrumbs} from "./Components/BreadCrumbs/BreadCrumbs";
 
 export default class App extends React.Component {
     state = {
         persons: [],
         albums: [],
-        user: []
+        user: [],
+        photos:[],
+        albumTitle:[]
     }
 
     componentDidMount() {
@@ -21,7 +25,7 @@ export default class App extends React.Component {
     }
 
 
-    getPhotos = (id) => {
+    getAlbums = (id, name) => {
         // console.log(id)
         axios.get(`https://jsonplaceholder.typicode.com/photos/`)
             .then(res => {
@@ -36,7 +40,16 @@ export default class App extends React.Component {
                 })
             })
     }
-
+getPhotos = (albumTitle)=>{
+        axios.get(`https://jsonplaceholder.typicode.com/photos/`)
+            .then(res=>{
+                const photos = res.data
+                this.setState({
+                    photos:photos,
+                    albumTitle:albumTitle
+                } )
+            })
+}
 
 
     render() {
@@ -45,14 +58,14 @@ export default class App extends React.Component {
                 <header className="App-header">
                     <div>Photo gallery</div>
                 </header>
+                <BreadCrumbs user={this.state.user} albums={this.state.albums} albumTitle ={this.state.albumTitle} />
                 <Routes>
-                    <Route path='/albums' element={<Albums user={this.state.user} albums={this.state.albums}/>}/>
-                    <Route path='/' element={<Users link={<Link to='/users'/>} getPhotos={this.getPhotos}
+                    <Route exact path='/albums' element={<Albums getPhotos={this.getPhotos} user={this.state.user}
+                                                           albums={this.state.albums}/>}/>
+                    <Route exact path='/' element={<Users link={<Link to='/users'/>} getAlbums={this.getAlbums}
                                                     persons={this.state.persons}/>}/>
+                    <Route exact path='albums/photos' element={<Photos photos = {this.state.photos}/>}/>
                 </Routes>
-                {/*<Albums albums={this.state.albums}/>*/}
-                {/*{this.state.albums.length>0?<Albums albums={this.state.albums}/>:*/}
-                {/*    <Users getPhotos={this.getPhotos} persons = {this.state.persons}/>}*/}
             </div>
         )
     }
