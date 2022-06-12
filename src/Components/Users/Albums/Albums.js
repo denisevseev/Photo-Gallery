@@ -8,8 +8,8 @@ export default class Albums extends React.Component {
         const albums = this.props.albums
         const user = this.props.user
         return <div>
-            <img src={iconPerson}/>
-            <div className='user'>{user}</div>
+                <img style={{ marginLeft: '-190px'}} src={iconPerson}/>
+                <div>{user}</div>
             <div style={{textAlign: 'left'}}>Albums</div>
             <hr/>
             <div className='Albums'>
