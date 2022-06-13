@@ -7,6 +7,7 @@ export default class Albums extends React.Component {
     render() {
         const albums = this.props.albums
         const user = this.props.user
+        console.log(albums , user)
         return <div>
                 <img style={{ marginLeft: '-190px'}} src={iconPerson}/>
                 <div>{user}</div>
