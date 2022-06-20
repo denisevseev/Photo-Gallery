@@ -1,23 +1,22 @@
 import React from "react";
 import iconPerson from "./person.png";
-import Albums from "./Albums/Albums";
-import  './Users.scss'
+import './Users.scss'
+import getUsers from "../../Store/GetUsers";
 import {Link} from "react-router-dom";
-export  class Users extends React.Component {
-  render(){
-      const persons = this.props.persons
-      return (<div className='container'>
-          {persons.map((person)=>
-              <Link to='/albums' key={person.id}>
-                  <div onClick={()=>{this.props.getAlbums(person.id, person.name)}}>
-                      <img src={iconPerson} /><br/>
-                      {person.name}
-                  </div>
-              </Link>
-
-          )}
-
-      </div>)
-  }
-
+import {observer} from "mobx-react";
+const Users = ({persons}) => {
+    const get = (id)=>{
+        getUsers.getAlbums(id)
+    }
+    return (<div className='container'>
+        {persons.map((person) =>
+            <Link to='/albums' key={person.id}>
+                <div onClick={()=>get(person.id)}>
+                    <img src={iconPerson}/><br/>
+                    {person.name}
+                </div>
+            </Link>
+        )}
+    </div>)
 }
+export default observer(Users)

@@ -1,12 +1,9 @@
 import React from "react";
 import './Photos.scss'
-
-export class Photos extends React.Component {
-    render() {
-        const photos = this.props.photos
+import {observer} from "mobx-react";
+const Photos = ({photos})=> {
         return <div className='photos'>
             {photos.map((photo, index) =>
-
                 index < 100 ?
                     <div key={index}>
                         <img src={ photo.thumbnailUrl}/>
@@ -14,5 +11,5 @@ export class Photos extends React.Component {
                     : '')}
 
         </div>
-    }
 }
+export default observer(Photos)
