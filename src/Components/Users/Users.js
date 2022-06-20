@@ -5,15 +5,15 @@ import getUsers from "../../Store/GetUsers";
 import {Link} from "react-router-dom";
 import {observer} from "mobx-react";
 const Users = ({persons}) => {
-    const get = (id)=>{
+    const getAlbums = (id)=>{
         getUsers.getAlbums(id)
     }
     return (<div className='container'>
         {persons.map((person) =>
-            <Link to='/albums' key={person.id}>
-                <div onClick={()=>get(person.id)}>
+            <Link style={{ textDecoration: 'none'}} to='/albums'  key={person.id}>
+                <div  onClick={()=>getAlbums(person.id)}>
                     <img src={iconPerson}/><br/>
-                    {person.name}
+                    <div class="text-muted"> {person.name}</div>
                 </div>
             </Link>
         )}

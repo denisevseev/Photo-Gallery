@@ -1,6 +1,5 @@
 import React from "react";
 import './Photos.scss'
-import {observer} from "mobx-react";
 const Photos = ({photos})=> {
         return <div className='photos'>
             {photos.map((photo, index) =>
@@ -12,4 +11,4 @@ const Photos = ({photos})=> {
 
         </div>
 }
-export default observer(Photos)
+export default Photos

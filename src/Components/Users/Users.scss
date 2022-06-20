@@ -1,14 +1,13 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  width: 40%;
+  width: 35%;
   gap: 10px;
-  div {
-    //flex: 30%;
-    cursor: pointer;
-  }
+
 }
-//div:active{
-//  color: red;
-//
-//}
+.text-muted {
+  word-wrap: break-word;
+  width: 115px;
+  font-weight: bold;
+}
+
