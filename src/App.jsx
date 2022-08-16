@@ -18,7 +18,7 @@ const App = () => {
             </header>
             <BreadCrumbs user={getUsers.user} albums={getUsers.albums} albumTitle={getUsers.albumTitle}/>
             <Routes>
-                <Route exact path='/' element={<Users persons={getUsers.persons}/>}/>
+                <Route exact path='/Photo-Gallery' element={<Users persons={getUsers.persons}/>}/>
                 <Route exact path='/albums' element={<Albums user={getUsers.user} albums={getUsers.albums}/>}/>
                 <Route exact path='albums/photos' element={<Photos photos={getUsers.photos}/>}/>
             </Routes>
