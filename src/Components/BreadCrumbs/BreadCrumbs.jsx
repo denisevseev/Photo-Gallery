@@ -4,12 +4,12 @@ import './breadCrumbs.scss'
 export const BreadCrumbs = ({user, albumTitle}) => {
     const changeLocation = (e) => {
         e.target.nextSibling.hidden = 'true'
-        e.target.innerText === 'home>' ? window.location.href = '/' : window.history.back();
+        e.target.innerText === 'home>' ? window.location.href = '/Photo-Gallery' : window.history.back();
     }
     const path = window.location.pathname;
     let crump = [];
     switch (path) {
-        case '/':
+        case '/Photo-Gallery':
             crump.push(`home`)
             break
         case '/albums':
